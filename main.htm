@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<title>Моделирование N-тел</title>
+
+</head>
+<body onload="initialize()">
+
+<script src="script.js">
+</script>
+
+<div id="animation" class="container">
+
+<h1>Моделирование N-тел</h1>
+
+<div id="g_alert" class="alert alert-warning mt-4" role="alert">
+	<p>В данной модели константа G равна 1.</p>
+	<p>Используйте мышь для просмотра всей области и колесико мышки для увеличения/уменьшения. Также щелкнув по телу, можно посмотреть его координаты, массу и компоненты вектора скорости.</p>
+	<button id="remove-alert" class="btn btn-warning" onclick="hide_g_alert()">Скрыть </button>
+</div>
+
+<p id="time">Время: </p> 
+
+<canvas id="bodies" height = "500" class="container-fluid p-0" onmousedown="mousedown_handler(event)"
+		onmousemove="mousemove_handler(event)" onmouseup="mouseup_handler(event)"
+		onmouseout="mouseout_handler(event)" onwheel="wheel_handler(event)">
+Положение планет
+</canvas>
+
+<div class="form-group">
+	<button id="run_btn" class="btn btn-dark" onclick="start_animation()"> Запустить анимацию </button>
+	<button id="stop_btn" class="btn btn-dark" onclick="stop_animation()"> Остановить анимацию </button>
+	<button id="zoom_out_btn" class="btn btn-dark" onclick="zoom_in()"> Увеличить </button>
+	<button id="zoom_in_btn" class="btn btn-dark" onclick="zoom_out()"> Уменьшить </button>
+	<button id="remove_all_btn" class="btn btn-danger" onclick="remove_all()"> Удалить все </button>
+</div>
+
+<div id="object_info" class="card mb-3" hidden>
+	<div class="card-body">
+		<p id="x_info">X: </p>
+		<p id="y_info">Y: </p>
+		<p id="vx_info">VX: </p>
+		<p id="vy_info">VY: </p>
+		<p id="mass_info">Масса: </p>
+	</div>
+</div>
+
+<div id="error_alert" class="alert alert-danger" role="alert" hidden>
+  <p>Здесь должно быть сообщение об ошибке!</p>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-prepend">
+			<span class="input-group-text">X:</span>
+		</div>
+		<input class="form-control" id="x_coord" value=""></input>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Y:</span>
+		</div>
+		<input class="form-control" id="y_coord" value=""></input>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-prepend">
+			<span class="input-group-text">VX:</span>
+		</div>
+		<input class="form-control" id="x_speed" value=""></input>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-prepend">
+			<span class="input-group-text">VY:</span>
+		</div>
+		<input class="form-control" id="y_speed" value=""></input>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Масса:</span>
+		</div>
+		<input class="form-control" id="mass" value=""></input>
+	</div>
+</div>
+
+<div class="form-group">
+<button id="add" class="btn btn-dark" onclick="add_body()">Добавить тело</button>
+</div>
+
+</div>
+
+<footer>
+<div class="container">
+<p class="text-muted">
+&copy; Зуев Александр, 2020 год
+</p>
+</div>
+</footer>
+
+</body>
+</html>
